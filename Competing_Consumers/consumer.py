@@ -19,7 +19,7 @@ def on_message_received(ch, method, properties, body):
     # track of which messages have been sent to which consumers. 
     # By specifying method.delivery_tag in ch.basic_ack(delivery_tag=method.delivery_tag), 
     # the consumer acknowledges the specific message that it has just processed.
-    ch.basic_ack(delvery_tag=method.delvery_tag)
+    ch.basic_ack(delivery_tag=method.delivery_tag)
     print("Finshed Processing Message")
 
 # prefetch_count=1 sets the maximum number of 
