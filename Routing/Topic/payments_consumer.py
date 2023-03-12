@@ -10,8 +10,8 @@ connection = pika.BlockingConnection(pika.ConnectionParameters('localhost', port
 channel = connection.channel()
 
 # Declaring an exchange from where we are supposed to receive the messages
-exchange_name = "routing"
-channel.exchange_declare(exchange=exchange_name, exchange_type=ExchangeType.direct)
+exchange_name = "topicExchange"
+channel.exchange_declare(exchange=exchange_name, exchange_type=ExchangeType.topic)
 
 current_queue = channel.queue_declare(queue='', exclusive=True)
 
@@ -20,7 +20,7 @@ channel.queue_bind(
     exchange=exchange_name, 
     queue=current_queue.method.queue,
     # !!!!!!!!!!!!!
-    routing_key='paymentsonly'
+    routing_key='#.payments'
 )
 
 

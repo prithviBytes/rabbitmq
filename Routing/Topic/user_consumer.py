@@ -3,7 +3,7 @@ from pika.exchange_type import ExchangeType
 
 # Define a callback function to process incoming messages
 def on_message_received(ch, method, properties, body):
-    print(f"Analytics Consumer has received a message")
+    print(f"User Consumer has received a message")
 
 # Establish a connection to RabbitMQ server
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost', port=5672))
@@ -20,7 +20,7 @@ channel.queue_bind(
     exchange=exchange_name, 
     queue=current_queue.method.queue,
     # !!!!!!!!!!!!!
-    routing_key='*.europe.*'
+    routing_key='user.#'
 )
 
 
